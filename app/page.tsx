@@ -29,6 +29,12 @@ export default function Home() {
     }
   };
 
+  const handleFetchData = async () => {
+    const response = await fetch('http://localhost:5000/api/get-data');
+    const result = await response.json();
+    setFileContent(result.data);
+  };
+
   return (
     <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
       <div>
@@ -39,6 +45,11 @@ export default function Home() {
           onChange={(e) => setInputData(e.target.value)}
         />
         <Button onClick={handleSubmit}>Отправить</Button>
+      </div>
+
+      <div>
+        <Button onClick={handleFetchData}>Получить данные</Button>
+        <div>{fileContent}</div>
       </div>
 
     </section>
